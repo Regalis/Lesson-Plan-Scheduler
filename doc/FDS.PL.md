@@ -70,6 +70,6 @@ Po wprowadzeniu danych, użytkownik będzie proszony o podanie kryteriów potrze
 	* wymogi wag (w dniu A suma wag przedmiotów nie może przekroczyć B)
 	* sloty zajęć (w dniu A zajęcia rozpoczynają się i kończą w przedziale czasowym B)
 
-Dla każdego kryterium dostępne będzie kryterium odwrotne np. dla relacji musi będzie dostępna relacja nie musi itp.
+Dla każdego kryterium dostępne będzie kryterium odwrotne np. dla relacji musi będzie dostępna relacja nie może itp.
 
 Program będzie starał się spełnić wszystkie kryteria, przy czym priorytet mają te, które zostały wskazane jako pierwsze. W przypadku, gdy użytkownik nie poda żadnego kryterium, program rozpocznie generowanie planu biorąc pod uwagę jedynie kryteria logiczne (kolizje). W przypadku podania tylko kilku kryteriów, wszystkie inne będą ignorowane. Na przykład, po zdefiniowaniu przez użytkownika tylko jednego kryterium: nauczyciel A musi mieć okienko w przedziale czasowym B, jego przedział godzin pracy będzie wynikiem obliczeń mających na celu jedynie wyeliminowanie kolizji, z gwarancją wolnego czasu we wskazanym przedziale.
