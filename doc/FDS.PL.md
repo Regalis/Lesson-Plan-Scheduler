@@ -3,7 +3,7 @@ Interaktywny generator planu lekcji
 
 *** UWAGA: Ta wersja dokumentu jest wersją roboczą specyfikacji funkcjonalnej opisanego oprogramowania. ***
 
-Celem przedsięwzięcia jest zaprojektowanie i zaimplementowanie programu komputerowego służącego do generowania planu lekcji dla szkół i uczelni. Zarówno specyfikacja techniczna, plany jak i sam program będą rozpowszechniane na zasadach GNU General Public License.
+Celem projektu jest opracowanie i zaimplementowanie programu komputerowego służącego do generowania planu lekcji dla szkół i uczelni. Zarówno specyfikacja techniczna, plany jak i sam program będą rozpowszechniane na zasadach GNU General Public License.
 
 Licencja ta gwarantuje prawo do używania programu bez względu na zastosowania, prawo do analizowania działaniaprogramu, jego rozpowszechniania oraz modyfikacji. Program będzie rozpowszechniany z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do Powszechnej Licencji Publicznej GNU
 (http://www.gnu.org/licenses/gpl.txt).
@@ -14,7 +14,7 @@ Autorzy programu nie będą dyskryminować użytkowników korzystających z odmi
 
 ## 2. Dane wejściowe
 
-Dane wejściowe są to dane, które użytkownik wprowadzi do programu (ręcznie) i które będą używane przez wewnętrzne struktury do wygenerowania wyników.
+Dane wejściowe są to informacje, które użytkownik wprowadza do programu (ręcznie) i które będą używane przez wewnętrzne struktury do wygenerowania wyników.
 
 * Dane nauczycieli
 
