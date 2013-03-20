@@ -1,7 +1,7 @@
 Interaktywny generator planu lekcji
 ===================================
 
-*** UWAGA: Ta wersja dokumentu***
+*** UWAGA: Ta wersja dokumentu jest wersją roboczą specyfikacji funkcjonalnej opisanego oprogramowania. ***
 
 Celem przedsięwzięcia jest zaprojektowanie i zaimplementowanie programu komputerowego służącego do generowania planu lekcji dla szkół i uczelni. Zarówno specyfikacja techniczna, plany jak i sam program będą rozpowszechniane na zasadach GNU General Public License.
 
