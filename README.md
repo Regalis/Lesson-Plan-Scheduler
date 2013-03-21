@@ -6,10 +6,11 @@ Open lesson plan scheduler program written in Qt with an use of CSP algorithms.
 ## License
 
 Copyright 2013, in alphabetical order:
-	* Ariana Las <ariana.las@gmail.com>
-	* Dagmara Siatka <dagmara.siatka@uj.edu.pl>
-	* Konrad Talik <konradtalik@gmail.com>
-	* Patryk Jaworski <regalis@regalis.com.pl>
+
+* Ariana Las <ariana.las@gmail.com>
+* Dagmara Siatka <dagmara.siatka@uj.edu.pl>
+* Konrad Talik <konradtalik@gmail.com>
+* Patryk Jaworski <regalis@regalis.com.pl>
 
 This software is free; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
