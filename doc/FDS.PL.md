@@ -1,16 +1,64 @@
-Interaktywny generator planu lekcji
-===================================
+<center> Interaktywny generator planu lekcji </center>
+=====================================================
 
-*** UWAGA: Ta wersja dokumentu jest wersją roboczą specyfikacji funkcjonalnej opisanego oprogramowania. ***
+<center> Specyfikacja funkcjonalna </center>
+===========================================
+
+***UWAGA: Ta wersja dokumentu jest wersją roboczą specyfikacji funkcjonalnej opisanego oprogramowania.***
+
+---
+
+**Autorzy:**
+
+* Ariana Las
+* Dagmara Siatka
+* Konrad Talik
+* Patryk Jaworski
+
+**Zaktualizowano:**	2013-03-23
+
+**Numer wersji:**	0
+
+**Status:**	Szkic
+
+---
 
 Celem projektu jest opracowanie i zaimplementowanie programu komputerowego służącego do generowania planu lekcji dla szkół i uczelni. Zarówno specyfikacja techniczna, plany jak i sam program będą rozpowszechniane na zasadach GNU General Public License.
 
 Licencja ta gwarantuje prawo do używania programu bez względu na zastosowania, prawo do analizowania działaniaprogramu, jego rozpowszechniania oraz modyfikacji. Program będzie rozpowszechniany z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do Powszechnej Licencji Publicznej GNU
 (http://www.gnu.org/licenses/gpl.txt).
 
-## 1. Założenia ogólne
+## 1. Wprowadzenie
+
+### 1.1. Założenia
 
 Autorzy programu nie będą dyskryminować użytkowników korzystających z odmiennych systemów operacyjnych. Sposób projektowania oraz użyte technologie umożliwią uruchomienie programu na różnych systemach operacyjnych bez strat funkcjonalności. Korzystanie z programu ma być proste i intuicyjne, format pliku użyty do eksportu danych będzie otwarty i dobrze udokumentowany. Przewidywana jest możliwość eksportu do znany formatów kalendarza. Program nie będzie wymagał od użytkownika posiadania żadnego komercyjnego oprogramowania, druk i eksport zrzutów planów lekcji oraz rozkładów pracy nauczycieli będzie zaimplementowany z wykorzystaniem wolnych (od angielskiego słowa freedom – wolność) technologii.
+
+### 1.2. Definicje
+
+<dl>
+  <dt>Szkoła</dt>
+  <dd>Mianem Szkoły będziemy nazywać użytkownika docelowego przedstawionego w niniejszym dokumencie oprogramowania oraz jednocześnie zbiór poniżej zdefiniowanych elementów.</dd>
+  <br>
+  <dt>Grupa</dt>
+  <dd>Grupa zajęciowa / klasa uczniów Szkoły. </dd>
+  <br>
+  <dt>Przedmiot</dt>
+  <dd>Program nauczania obejmujący zadany materiał. Przedmiot jest nauczany przez wskazanych Nauczycieli. Niektóre przedmioty mogą wymagać odpowiedniego wyposażenia by były możliwe do realizacji.</dd>
+  <br>
+  <dt>Zajęcia</dt>
+  <dd>Lekcje prowadzone w ramach ustalonego przedmiotu. Konkretne zajęcia prowadzone są przez konkretnego nauczyciela w konkretnej grupie lub klasie. Niektóre zajęcia mogą wymagać odpowiedniego wyposażenia by były możliwe do realizacji.</dd>
+  <br>
+  <dt>Nauczyciel</dt>
+  <dd>Osoba posiadająca kwalifikacje do prowadzenia zajęć z danego Przedmiotu. Nauczyciel ma przydzielony zbiór zajęć (godzin), które może prowadzić.</dd>
+  <br>
+  <dt>Sala</dt>
+  <dd>Jest miejscem odbywania się zajęć. Może udostępniać zadane wyposażenie.</dd>
+  <br>
+  <dt>Plan lekcji</dt>
+  <dd>Zbiór uporządkowanych zajęć z konkretnych przedmiotów. Plan lekcji jest planem konkretnej grupy (klasy szkolnej) lub planem konkretnego pracownika. Plany lekcji dwóch dowolnych grup są <em>rozłączne</em>, to znaczy że zajęcia odbywające się w jednym planie nie odbywają się w drugim. To samo tyczy się planów pracowników (nauczycieli). Relacja ta nie zachodzi między planem lekcji dowolnej grupy a planem dowolnego pracownika - takie plany mogą posiadać <em> część wspólną</em>.</dd>
+
+</dl>
 
 ## 2. Dane wejściowe
 
