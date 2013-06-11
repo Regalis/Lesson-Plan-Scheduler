@@ -23,4 +23,9 @@ Makefile
 
 *.swp
 *.swo
+*.vim
+
+# Documentation
+
+doc
 
