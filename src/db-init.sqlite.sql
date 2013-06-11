@@ -33,6 +33,7 @@ create table classrooms (
 
 create table groups (
 	group_id integer primary key,
+	group_parent integer default null references groups on delete cascade,
 	teacher_id integer default null references teachers on delete set null,
 	name text not null,
 	members_no integer not null,
@@ -53,6 +54,13 @@ create table notes (
 	date text
 );
 
+create table plans (
+	plan_id integer primary key,
+	name text not null,
+	start_date text not null,
+	end_date text not null check (datetime(start_date) < datetime(end_date))
+);
+
 create table props (
 	prop_id integer primary key,
 	name text not null,
@@ -62,19 +70,19 @@ create table props (
 create table school_subjects (
 	subject_id integer primary key,
 	name text not null,
-	/** subject type
-	* 0 - full (2 semesters)
-	* 1 - one semester
-	* 2 - every now and then
-	* 3 - only once
-	*/
-	type integer not null default 0,
 	/** participants type
 	* 0 - the whole group
 	* 1 - split in two groups
 	*/
 	participants integer not null default 0,
 	fatigue_level integer not null
+);
+
+create table slots (
+	slot_id integer primary key,
+	plan_id integer not null references palns on delete cascade,
+	start_time text not null,
+	end_time text not null check (time(start_time) < time(end_time))
 );
 
 create table teachers (
@@ -98,6 +106,30 @@ create table groups_school_subjects (
 	group_id integer references groups on delete cascade,
 	subject_id integer references school_subjects on delete cascade,
 	primary key (group_id, subject_id)
+);
+
+/* TODO: how to save more plan results? */
+create table plan_results (
+	result_id integer primary key,
+	plan_id integer not null references plans on delete cascade,
+	day_no integer not null
+);
+
+create table plan_results_slots (
+	result_slot_id integer primary key,
+	result_id integer not null references plan_results on delete cascade,
+	slot_id integer not null references slots on delete cascade,
+	group_id integer not null references groups on delete cascade,
+	classroom_id integer not null references classrooms on delete cascade,
+	teacher_id integer not null references teachers on delete cascade,
+	subject_id integer not null references school_subjects on delete cascade
+);
+
+/** Subject optional intervals */
+create table school_subjects_intervals (
+	subject_id integer references school_subjects on delete cascade,
+	interval_id integer references intervals on delete cascade,
+	primary key (subject_id, interval_id)
 );
 
 create table teachers_intervals (
