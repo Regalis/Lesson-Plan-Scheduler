@@ -1,9 +1,33 @@
-lesson-plan-scheduler
+Lesson Plan Scheduler
 =====================
 
-Open lesson plan scheduler program written in Qt with the use of CSP algorithms.
+This is the root directory of the source of this software.
 
-This is a general *readme*. For more information about compilation, contribution and documentation, please look at the *README.md* in the *src* directory.
+## Building
+
+To build Lesson Plan Scheduler you will need Qt 4.
+
+First generate a Makefile using *qmake* tool:
+
+	qmake
+
+or:
+
+	qmake-qt4
+
+Then build *lesson-plan-scheduler* using *make*:
+
+	make
+
+Output *lesson-plan-scheduler* binary is ready for use.
+
+## Documentation
+
+To generate a documentation files simply run:
+
+	doxygen Doxyfile
+
+Documentation files will be located in the *../doc/html* folder.
 
 ## License
 
