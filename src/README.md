@@ -1,5 +1,5 @@
-Lesson Plan Scheduler
-=====================
+Lesson Plan Scheduler - Contributing
+====================================
 
 This is the root directory of the source of this software.
 
