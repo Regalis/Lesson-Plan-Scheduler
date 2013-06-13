@@ -113,10 +113,10 @@ namespace slimak {
 
 			/// Destructor.
 			~Graph() {}
-
-			/** @name Access methods */
+			
+			/** @name Properties methods */
 			///@{
-			/** *Access method* */
+			/** *Property method* */
 
 			/// Determine if this Graph has a specified edge.
 			bool hasEdge(T *first_vertex, T *second_vertex) {
@@ -124,6 +124,12 @@ namespace slimak {
 					return true;
 				return false;
 			}
+			
+			///@}
+
+			/** @name Access methods */
+			///@{
+			/** *Access method* */
 
 			/// Return a vector of pointers to neighbors of **given_vertex**.
 			/**
@@ -134,7 +140,6 @@ namespace slimak {
 				return edges[ given_vertex ];
 			}
 
-			/// 
 
 			///@}
 
