@@ -20,7 +20,7 @@
 
 slimak::CSP::CSP (
 	int attributes_dimensions,
-	std::map< slimak::CSPAttribute, int > given_attributes,
+	std::vector< std::vector< slimak::CSPAttribute > > given_attributes,
 	std::vector< slimak::CSPVariable > given_variables,
 	std::vector< slimak::CSPConstraint > given_constraints
 	) {
@@ -29,24 +29,6 @@ slimak::CSP::CSP (
 		constraints = given_constraints;
 
 		/* Generate a domain from given_attributes. */
-		domain = std::vector< slimak::CSPColor > ();
-		// Divide attributes into dimensions: attribute[ dimension ][ id ].
-		std::vector< std::vector< slimak::CSPAttribute > > attributes;
-		// Prepare data storage.
-		for (int i = 0; i < attributes_dimensions; ++i) {
-			std::vector< slimak::CSPAttribute > new_dimension;
-			attributes.push_back( new_dimension );
-		}
-		// Store attributes.
-		for (std::map< slimak::CSPAttribute, int >::iterator it = given_attributes.begin();
-			it != given_attributes.end(); ++it) {
-				attributes[ (*it).second ].push_back( (*it).first );
-		}
-		// Generate......
-		for (std::vector< std::vector< slimak::CSPAttribute > >::iterator it = attributes.begin();
-			it != attributes.end(); ++it) {
-			/* TODO */
-		}
 
 }
 

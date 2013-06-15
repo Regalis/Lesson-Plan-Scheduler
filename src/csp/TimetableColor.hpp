@@ -28,6 +28,7 @@
 #define __TIMETABLE_COLOR_HPP__
 
 #include "CSPColor.hpp"
+#include "TimetableStructures.hpp"
 
 namespace slimak {
 
@@ -48,12 +49,16 @@ namespace slimak {
 			/// Construct a TimetableColor with given concrete attributes (or attribute)
 			TimetableColor(std::vector< slimak::CSPAttribute > given_attributes);
 			
-			virtual std::vector< slimak::TimetableColor >
-			generateDomain(std::vector< std::vector< slimak::CSPAttribute > > given_attributes);
-		
-		protected:
-
-			std::vector< slimak::CSPAttribute > attributes;
+			/// Construct a TimetableColor with given Timetable structures
+			TimetableColor (
+				slimak::TimetableTeacher given_teacher,
+				slimak::TimetableSubject given_subject,
+				slimak::TimetableClassroom given_classroom
+			);
+	
+			slimak::TimetableTeacher teacher;
+			slimak::TimetableSubject subject;
+			slimak::TimetableClassroom classroom;
 
 	};
 

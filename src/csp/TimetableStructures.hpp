@@ -14,53 +14,53 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
+ * Contributors:
+ *  -> Konrad Talik <konradtalik@gmail.com>
+ *
  */
 
 /**
- * @file 	csp/CSPColor.hpp
- * @brief	Multidimensional color of a vertex in the Graph
- * @date	2013-06-13
+ * @file 	csp/TimetableStructures.hpp
+ * @brief	Timetable generating class
+ * @date	2013-06-14
  * @authors	Konrad Talik <konradtalik@gmail.com>
  * @copyright	GNU General Public License v3.
  */
 
-#ifndef __CSP_COLOR_HPP__
-#define __CSP_COLOR_HPP__
+#ifndef __TIMETABLE_STRUCTURES_HPP__
+#define __TIMETABLE_STRUCTURES_HPP__
 
 #include <vector>
-#include "CSPAttribute.hpp"
 
 namespace slimak {
 
-	/**
-	 * @brief	Multidimensional color of a vertex in the Graph
-	 * @author	Konrad Talik <konradtalik@gmail.com>
-	 *
-	 */
-	class CSPColor {
-
-		public:
-
-			/* CONSTRUCTORS */
-
-			/// Construct empty CSPColor
-			CSPColor();
-
-			/// Construct a CSPColor with given number of attributes (dimensions)
-			CSPColor(size_t given_attributes_number);
-
-			/// Construct a CSPColor with given concrete attributes (or attribute)
-			CSPColor(std::vector< slimak::CSPAttribute > given_attributes);
-			
-			virtual std::vector< slimak::CSPColor >
-			generateDomain(std::vector< std::vector< slimak::CSPAttribute > > given_attributes);
-		
-		protected:
-
-			std::vector< slimak::CSPAttribute > attributes;
+	struct TimetableClassroom {
+		int id;
+		int capacity;
 
 	};
 
+	struct TimetableSubject {
+		int id;
+		int fatigue_level;
+		std::vector< int > classrooms;
+		//std::vector< int > teachers;
+	};
+	
+	struct TimetableTeacher {
+		int id;
+		int max_slots;
+		std::vector< std::vector< int > > slots;
+		std::vector< int > subjects;
+	};
+
+	struct TimetableGroup {
+		int id;
+		int teacher_id;
+		std::vector< int > subjects;
+
+	};
+	
 }
 
 #endif

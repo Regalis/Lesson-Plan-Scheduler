@@ -105,22 +105,22 @@ namespace slimak {
 			 * 	A number of dimensions of **attributes** of **colors**.
 			 *
 			 * @param given_attributes
-			 *	We are giving a map of attributes, from which a **domain** will be created.
-			 *	The key in the map is a concrete **attribute**.
-			 *	The value is a dimension number (these numbers must start from 0).
+			 *	We are giving a vector of attributes, from which a **domain** will be created.
+			 *	This vector contains inner vectors. Every inner vector is another dimension 0,1,... .
+			 *	Every dimension (vector) should contain all needed **attributes**.
 			 *
 			 * @param given_variables
 			 *	This is a vector of variables which we want assign a specific values.
 			 *
 			 * @param given_constraints
 			 * 	These are constraints which we want to satisfy throughout the algorithm process.
-			 *
+			 * 
 			 * For more information about algorithm proccess, please read the class detailed description.
 			 *
 			 */
 			CSP (
 				int attributes_dimensions,
-				std::map< slimak::CSPAttribute, int > given_attributes,
+				std::vector< std::vector< slimak::CSPAttribute > > given_attributes,
 				std::vector< slimak::CSPVariable > given_variables,
 				std::vector< slimak::CSPConstraint > given_constraints
 			);

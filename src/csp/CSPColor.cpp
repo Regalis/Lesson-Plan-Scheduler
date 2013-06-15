@@ -18,6 +18,8 @@
 
 #include "CSPColor.hpp"
 
+slimak::CSPColor::CSPColor() {};
+
 slimak::CSPColor::CSPColor(size_t given_attributes_number) {
 	attributes = std::vector< slimak::CSPAttribute > (given_attributes_number);
 }

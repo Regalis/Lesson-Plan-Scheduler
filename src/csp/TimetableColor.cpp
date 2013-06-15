@@ -24,9 +24,12 @@ CSPColor( given_attributes_number ) {}
 slimak::TimetableColor::TimetableColor(std::vector< slimak::CSPAttribute > given_attributes) :
 CSPColor( given_attributes ) {}
 
-virtual std::vector< slimak::TimetableColor >
-slimak::TimetableColor::generateDomain (
-	std::vector< std::vector< slimak::CSPAttribute > > given_attributes
-	) {
-		return std::vector< slimak::TimetableColor >;
+slimak::TimetableColor::TimetableColor (
+	slimak::TimetableTeacher given_teacher,
+	slimak::TimetableSubject given_subject,
+	slimak::TimetableClassroom given_classroom
+) {
+	teacher = given_teacher;
+	subject = given_subject;
+	classroom = given_classroom;
 }
