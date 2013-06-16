@@ -45,6 +45,29 @@ slimak::TimetableGenerator::TimetableGenerator (
 		std::cerr << "[CSP] " << it->teacher.id << ' ' << it->subject.id
 			<< ' ' << it->classroom.id << std::endl;
 	}
+	
+	slots_domains = generateSlotsDomains( given_constraints );
+	
+	std::cerr << "[CSP] Slots domain generation results:" << std::endl;
+	std::cerr << "[CSP] <teacher> <subject> <classroom>" << std::endl;
+
+	for (int day = 0; day < number_of_days; ++day ) {
+		std::cerr << "[CSP] - day " << day << ": " << std::endl;
+
+		for (int slot = 0; slot < number_of_slots; ++slot) {
+			std::cerr << "[CSP] - - slot " << slot << ": " << std::endl;
+
+			for ( std::vector< TimetableColor >::iterator it = 
+				slots_domains.colors[day][slot].begin();
+				it != slots_domains.colors[day][slot].end();
+				++it ) {
+
+				std::cerr << "[CSP] - - - " << it->teacher.id << ' ' << it->subject.id
+					<< ' ' << it->classroom.id << std::endl;
+
+			}
+		}
+	}
 
 }
 
@@ -108,29 +131,6 @@ slimak::TimetablePlan slimak::TimetableGenerator::generateForGroup (
 	std::vector< TimetableConstraint * > given_constraints
 ) {
 	resetPlan( given_group_id );
-	slimak::TimetablePlanDomains group_plan_domains =
-		generateGroupDomains( given_group_id, given_constraints );
-	
-	std::cerr << "[CSP] Group " << given_group_id << " domain generation results:" << std::endl;
-	std::cerr << "[CSP] <teacher> <subject> <classroom>" << std::endl;
-
-	for (int day = 0; day < number_of_days; ++day ) {
-		std::cerr << "[CSP] - day " << day << ": " << std::endl;
-
-		for (int slot = 0; slot < number_of_slots; ++slot) {
-			std::cerr << "[CSP] - - slot " << slot << ": " << std::endl;
-
-			for ( std::vector< TimetableColor >::iterator it = 
-				group_plan_domains.colors[day][slot].begin();
-				it != group_plan_domains.colors[day][slot].end();
-				++it ) {
-
-				std::cerr << "[CSP] - - - " << it->teacher.id << ' ' << it->subject.id
-					<< ' ' << it->classroom.id << std::endl;
-
-			}
-		}
-	}
 
 	return groups_timetables[ given_group_id ];
 
@@ -200,13 +200,12 @@ void slimak::TimetableGenerator::resetPlan( int given_group_id ) {
 
 
 slimak::TimetablePlanDomains
-slimak::TimetableGenerator::generateGroupDomains (
-	int given_group_id,
+slimak::TimetableGenerator::generateSlotsDomains (
 	std::vector< TimetableConstraint * > given_constraints
 ) {
 	
 	slimak::TimetablePlanDomains result_domains;
-	std::cerr << "[CSP] Generating group " << given_group_id << " domain..." << std::endl;
+	std::cerr << "[CSP] Generating slots domains..." << std::endl;
 
 	for (int day = 0; day < number_of_days; ++day ) {
 	for (int slot = 0; slot < number_of_slots; ++slot) {

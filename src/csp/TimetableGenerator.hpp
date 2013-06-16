@@ -84,12 +84,12 @@ namespace slimak {
 			int number_of_days;
 			int number_of_slots;
 			std::vector< slimak::TimetableColor > global_domain;
+			slimak::TimetablePlanDomains slots_domains;
 			std::map< int, slimak::TimetablePlan > groups_timetables;
 			std::map< int, slimak::TimetablePlan > teachers_timetables;
 
 			void resetPlan( int given_group_id );
-			slimak::TimetablePlanDomains generateGroupDomains (
-				int given_group_id,
+			slimak::TimetablePlanDomains generateSlotsDomains (
 				std::vector< TimetableConstraint * > given_constraints
 			);
 
