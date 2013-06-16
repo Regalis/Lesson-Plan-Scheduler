@@ -53,8 +53,11 @@ int main() {
 	leszek_poniedzialek.push_back(0);
 	leszek_poniedzialek.push_back(1);
 	leszek_poniedzialek.push_back(2);
+	// wtorek
+	std::vector< int > leszek_wtorek;
 	// slots
 	leszek.slots.push_back( leszek_poniedzialek );
+	leszek.slots.push_back( leszek_wtorek );
 	// subjects
 	leszek.subjects.push_back( matematyka.id );
 
@@ -70,6 +73,7 @@ int main() {
 	wladek_wtorek.push_back(2);
 	// slots
 	wladek.slots.push_back( wladek_poniedzialek );
+	wladek.slots.push_back( wladek_wtorek );
 	// subjects
 	wladek.subjects.push_back( matematyka.id );
 	
@@ -103,7 +107,13 @@ int main() {
 
 	slimak::TimetableGenerator generator (
 		2, 3,
-		given_groups, given_teachers, given_subjects, given_classrooms, given_constraints );
+		given_groups, given_teachers, given_subjects, given_classrooms, given_constraints
+	);
+	
+	generator.generateForGroup (
+		0,
+		given_teachers, given_subjects, given_classrooms, given_constraints
+	);
 
 	return 0;
 

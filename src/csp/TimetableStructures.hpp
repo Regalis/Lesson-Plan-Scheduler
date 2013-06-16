@@ -31,8 +31,11 @@
 #define __TIMETABLE_STRUCTURES_HPP__
 
 #include <vector>
+#include <map>
 
 namespace slimak {
+
+	class TimetableColor;
 
 	struct TimetableClassroom {
 		int id;
@@ -59,6 +62,22 @@ namespace slimak {
 		int teacher_id;
 		std::vector< int > subjects;
 
+	};
+
+	struct TimetablePlan {
+		std::map<
+			int, std::map<
+				int, slimak::TimetableColor
+			>
+		> slots;
+	};
+	
+	struct TimetablePlanDomains {
+		std::map<
+			int, std::map<
+				int, std::vector< slimak::TimetableColor >
+			>
+		> colors;
 	};
 	
 }

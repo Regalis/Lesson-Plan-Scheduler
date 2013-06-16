@@ -43,6 +43,9 @@ namespace slimak {
 
 			/* CONSTRUCTORS */
 
+			/// Default constructor
+			TimetableColor();
+
 			/// Construct a TimetableColor with given number of attributes (dimensions)
 			TimetableColor(size_t given_attributes_number);
 
@@ -55,10 +58,23 @@ namespace slimak {
 				slimak::TimetableSubject given_subject,
 				slimak::TimetableClassroom given_classroom
 			);
+			
+			/// Set color attributes
+			void setAttributes (
+				slimak::TimetableTeacher given_teacher,
+				slimak::TimetableSubject given_subject,
+				slimak::TimetableClassroom given_classroom
+			);
+
+			bool isEmpty();
 	
 			slimak::TimetableTeacher teacher;
 			slimak::TimetableSubject subject;
 			slimak::TimetableClassroom classroom;
+		
+		protected:
+
+			bool empty;
 
 	};
 

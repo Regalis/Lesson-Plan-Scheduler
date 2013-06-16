@@ -36,7 +36,7 @@ namespace slimak {
 
 	/// Constraint 00: **given_teacher(s)** must teach in **given_classroom(s)** only.
 	class TimetableConstraint00 : public TimetableConstraint {
-		
+
 		public:
 			
 			TimetableConstraint00();
