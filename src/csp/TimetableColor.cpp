@@ -20,16 +20,29 @@
 
 slimak::TimetableColor::TimetableColor() {
 	empty = true;
+	blank = false;
+}
+
+slimak::TimetableColor::TimetableColor(bool if_blank) {
+	if (if_blank) {
+		blank = true;
+		empty = false;
+	} else {
+		blank = false;
+		empty = true;
+	}
 }
 
 slimak::TimetableColor::TimetableColor(size_t given_attributes_number) :
 CSPColor( given_attributes_number ) {
 	empty = true;
+	blank = false;
 }
 
 slimak::TimetableColor::TimetableColor(std::vector< slimak::CSPAttribute > given_attributes) :
 CSPColor( given_attributes ) {
 	empty = false;
+	blank = false;
 }
 
 slimak::TimetableColor::TimetableColor (
@@ -38,6 +51,7 @@ slimak::TimetableColor::TimetableColor (
 	slimak::TimetableClassroom given_classroom
 ) {
 	empty = false;
+	blank = false;
 	teacher = given_teacher;
 	subject = given_subject;
 	classroom = given_classroom;
@@ -49,6 +63,7 @@ void slimak::TimetableColor::setAttributes (
 	slimak::TimetableClassroom given_classroom
 ) {
 	empty = false;
+	blank = false;
 	teacher = given_teacher;
 	subject = given_subject;
 	classroom = given_classroom;
@@ -56,4 +71,8 @@ void slimak::TimetableColor::setAttributes (
 
 bool slimak::TimetableColor::isEmpty() {
 	return empty;
+}
+
+bool slimak::TimetableColor::isBlank() {
+	return blank;
 }

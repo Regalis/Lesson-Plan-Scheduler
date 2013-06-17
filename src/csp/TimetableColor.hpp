@@ -46,6 +46,9 @@ namespace slimak {
 			/// Default constructor
 			TimetableColor();
 
+			/// Construct blank color if true given
+			TimetableColor(bool if_blank);
+
 			/// Construct a TimetableColor with given number of attributes (dimensions)
 			TimetableColor(size_t given_attributes_number);
 
@@ -67,6 +70,7 @@ namespace slimak {
 			);
 
 			bool isEmpty();
+			bool isBlank();
 	
 			slimak::TimetableTeacher teacher;
 			slimak::TimetableSubject subject;
@@ -75,6 +79,7 @@ namespace slimak {
 		protected:
 
 			bool empty;
+			bool blank;
 
 	};
 

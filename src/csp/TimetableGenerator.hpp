@@ -57,16 +57,17 @@ namespace slimak {
 				std::vector< TimetableConstraint * > given_constraints
 			);
 
-			/// Generates new lesson plan for **given_group_id**.
-			/* This method removes current version of plan of given_group_id
+			/// Generates new lesson plan for *given_group*.
+			/* This method removes current version of plan of given_group
 			 * and replaces it with newly generated plan.
 			 */
-			slimak::TimetablePlan generateForGroup ( 
-				int given_group_id,
-				std::map< int, TimetableTeacher > given_teachers,
-				std::map< int, TimetableSubject > given_subjects,
-				std::map< int, TimetableClassroom > given_classrooms,
-				std::vector< TimetableConstraint * > given_constraints
+			slimak::TimetablePlan generateForGroup( slimak::TimetableGroup given_group );
+
+			bool isSuitableForGroup (
+				slimak::TimetableColor given_color,
+				slimak::TimetableGroup given_group,
+				std::vector< int > remaining_lessons,
+				std::vector< int > assigned_teachers
 			);
 
 			bool consistent (
@@ -89,10 +90,10 @@ namespace slimak {
 			std::map< int, slimak::TimetablePlan > teachers_timetables;
 
 			void resetPlan( int given_group_id );
+
 			slimak::TimetablePlanDomains generateSlotsDomains (
 				std::vector< TimetableConstraint * > given_constraints
 			);
-
 
 	};
 }

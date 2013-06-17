@@ -20,6 +20,7 @@
 #include "TimetableAttribute.hpp"
 #include <iostream>
 #include <algorithm>
+#include <utility>
 
 slimak::TimetableGenerator::TimetableGenerator (
 	int given_number_of_days,
@@ -123,19 +124,189 @@ slimak::TimetableGenerator::generateGlobalDomain (
 
 }
 
-slimak::TimetablePlan slimak::TimetableGenerator::generateForGroup (
-	int given_group_id,
-	std::map< int, TimetableTeacher > given_teachers,
-	std::map< int, TimetableSubject > given_subjects,
-	std::map< int, TimetableClassroom > given_classrooms,
-	std::vector< TimetableConstraint * > given_constraints
+slimak::TimetablePlan slimak::TimetableGenerator::generateForGroup ( 
+	slimak::TimetableGroup given_group
 ) {
-	resetPlan( given_group_id );
+	resetPlan( given_group.id );
 
-	return groups_timetables[ given_group_id ];
+	// Meaning:
+	// remaining_lessons[ subject_id ] = remaining_subject_lessons
+	std::vector< int > remaining_lessons = given_group.subjects_lessons;
+	
+	// Meaning:
+	// assigned_teachers[ subject_id ] = assigned_teacher_id
+	std::vector< int > assigned_teachers (
+		given_group.subjects.size(), -1
+	);
+
+	std::vector< std::pair< int, int > > slots_queue;
+	// Start from monday 8:00
+	slots_queue.push_back( std::pair< int, int > (0, 0) );
+
+	// Construct
+	while ( slots_queue.size() > 0 ) {
+
+		/* Search what to pop */
+		int max_suitability = -1;
+		std::vector< std::pair< int, int > >::iterator
+			max_suitability_slot = slots_queue.end();
+
+		for ( std::vector< std::pair< int, int > >::iterator
+			it = slots_queue.begin();
+			it != slots_queue.end();
+			++it
+		) {
+
+			int day = it->first;
+			int slot = it->second;
+
+			if ( !groups_timetables[ given_group.id ].slots[day][slot].isEmpty() ) {
+				// slots_queue.erase( it ); // Psuje iteracje
+				continue;
+			}
+
+			/* Check the suitability */
+			int it_domain_size = slots_domains.colors[day][slot].size();
+			int it_suitability = 0;
+			for (int j = 0; j < it_domain_size; ++j) {
+
+				slimak::TimetableColor
+					color_j = slots_domains.colors[day][slot][j];
+				if ( isSuitableForGroup ( 
+					color_j, 
+					given_group,
+					remaining_lessons,
+					assigned_teachers
+					)
+				)
+					++it_suitability;
+			}
+
+			if (it_suitability > max_suitability) {
+				max_suitability = it_suitability;
+				max_suitability_slot = it;
+			}
+
+		}
+
+		// The most suitable slot:
+		int day = max_suitability_slot->first;
+		int slot = max_suitability_slot->second;
+		slots_queue.erase( max_suitability_slot );
+
+		// Expand
+		if ( day < number_of_days-1 )
+			slots_queue.push_back( std::pair< int, int > (day+1, slot) );
+		if ( slot < number_of_slots-1 )
+			slots_queue.push_back( std::pair< int, int > (day, slot+1) );
+		
+		// Color
+		slimak::TimetableColor color_result(true);
+		int slot_domain_size = slots_domains.colors[day][slot].size();
+		for (int i = 0; i < slot_domain_size; ++i) {
+
+			slimak::TimetableColor
+				color_i = slots_domains.colors[day][slot][i];
+
+			if ( isSuitableForGroup ( 
+				color_i,
+				given_group,
+				remaining_lessons,
+				assigned_teachers
+				)
+			) {
+				color_result = color_i;
+				break;
+			}
+		}
+
+		std::vector< int >::iterator
+			subject_k = std::find (
+				given_group.subjects.begin(),
+				given_group.subjects.end(),
+				color_result.subject.id
+			);
+
+		int group_subject_number =
+			std::distance (
+				given_group.subjects.begin(),
+				subject_k
+			);
+
+		if ( !color_result.isBlank() ) {
+			if ( assigned_teachers [group_subject_number] == -1 ) {
+				assigned_teachers [group_subject_number] = color_result.teacher.id;
+			}
+			remaining_lessons[group_subject_number] =
+			remaining_lessons[group_subject_number] - 1;
+		}
+		
+		groups_timetables[ given_group.id ].slots[day][slot] = color_result;
+
+		if ( !color_result.isBlank() ) {
+			for ( std::vector< slimak::TimetableColor >::iterator
+				color_it = slots_domains.colors[day][slot].begin();
+				color_it != slots_domains.colors[day][slot].end();
+				++color_it ) {
+
+					if ( (color_it->teacher.id == color_result.teacher.id)
+						&& (color_it->subject.id == color_result.subject.id)
+						&& (color_it->classroom.id == color_result.classroom.id)
+					) {
+						slots_domains.colors[day][slot].erase( color_it );
+						break;
+					}
+			}
+		}
+
+	}
+
+	return groups_timetables[ given_group.id ];
 
 }
 
+
+bool slimak::TimetableGenerator::isSuitableForGroup ( 
+	slimak::TimetableColor given_color,
+	slimak::TimetableGroup given_group,
+	std::vector< int > remaining_lessons,
+	std::vector< int > assigned_teachers
+) {
+
+	std::vector< int >::iterator
+		subject_k = std::find (
+			given_group.subjects.begin(),
+			given_group.subjects.end(),
+			given_color.subject.id
+		);
+
+	if ( subject_k == given_group.subjects.end() )
+		return false;
+
+	int group_subject_number =
+		std::distance (
+			given_group.subjects.begin(),
+			subject_k
+		);
+
+	if ( 
+		( remaining_lessons [group_subject_number] > 0 
+		) && ( 
+			(
+				assigned_teachers [group_subject_number] == -1
+			) || (
+				assigned_teachers [group_subject_number] == given_color.teacher.id
+			)
+		) 
+	) {
+
+		return true;
+			
+	}
+
+	return false;
+
+}
 
 bool slimak::TimetableGenerator::consistent (
 	TimetableColor given_color,
@@ -182,11 +353,15 @@ bool slimak::TimetableGenerator::fitsTeacher (
 
 void slimak::TimetableGenerator::resetPlan( int given_group_id ) {
 
+	//TODO:
+	// When resetting plan, recover freed colors, selecting them
+	// from global_domain and adding back to slots_domains.
+
 	groups_timetables[ given_group_id ] = slimak::TimetablePlan();
 	std::map< int, slimak::TimetableColor > empty_day;
 
 	for (int slot = 0; slot < number_of_slots; ++slot) {
-		empty_day[ slot ] = slimak::TimetableColor(3);
+		empty_day[ slot ] = slimak::TimetableColor(false);
 	}
 
 	for (int day = 0; day < number_of_days; ++ day) {

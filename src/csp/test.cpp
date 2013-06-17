@@ -78,11 +78,22 @@ int main() {
 	wladek.subjects.push_back( matematyka.id );
 	
 	/* Groups */
+	// Ia
 	slimak::TimetableGroup group_Ia;
 	group_Ia.id = 0;
 	group_Ia.teacher_id = 2;
 	group_Ia.subjects.push_back( polski.id );
 	group_Ia.subjects.push_back( matematyka.id );
+	group_Ia.subjects_lessons.push_back( 2 );
+	group_Ia.subjects_lessons.push_back( 2 );
+	// Ib
+	slimak::TimetableGroup group_Ib;
+	group_Ib.id = 1;
+	group_Ib.teacher_id = 1;
+	group_Ib.subjects.push_back( polski.id );
+	group_Ib.subjects.push_back( matematyka.id );
+	group_Ib.subjects_lessons.push_back( 2 );
+	group_Ib.subjects_lessons.push_back( 2 );
 
 	/* Constraints */
 	std::vector< int > zbyszek_classrooms;
@@ -96,6 +107,7 @@ int main() {
 	std::vector< slimak::TimetableConstraint * > given_constraints;
 
 	given_groups[0] = group_Ia;
+	given_groups[1] = group_Ib;
 	given_teachers[0] = zbyszek;
 	given_teachers[1] = leszek;
 	given_teachers[2] = wladek;
@@ -110,10 +122,41 @@ int main() {
 		given_groups, given_teachers, given_subjects, given_classrooms, given_constraints
 	);
 	
-	generator.generateForGroup (
-		0,
-		given_teachers, given_subjects, given_classrooms, given_constraints
-	);
+	slimak::TimetablePlan plan_Ia = generator.generateForGroup ( group_Ia );
+
+	std::cerr << "Plan Ia" << std::endl;
+	for (int day = 0; day < 2; ++day) {
+		std::cerr << "Day " << day << ":" << std::endl;
+		for (int slot = 0; slot < 3; ++slot ) {
+			std::cerr << "- Slot " << slot << ": ";
+			if ( plan_Ia.slots[day][slot].isEmpty()
+				|| plan_Ia.slots[day][slot].isBlank() ) {
+					std::cerr << " --- " << std::endl;
+					continue;
+			}
+			std::cerr << plan_Ia.slots[day][slot].teacher.id << " ";
+			std::cerr << plan_Ia.slots[day][slot].subject.id << " ";
+			std::cerr << plan_Ia.slots[day][slot].classroom.id << std::endl;
+		}
+	}
+
+	slimak::TimetablePlan plan_Ib = generator.generateForGroup ( group_Ib );
+	
+	std::cerr << "\nPlan Ib" << std::endl;
+	for (int day = 0; day < 2; ++day) {
+		std::cerr << "Day " << day << ":" << std::endl;
+		for (int slot = 0; slot < 3; ++slot ) {
+			std::cerr << "- Slot " << slot << ": ";
+			if ( plan_Ib.slots[day][slot].isEmpty()
+				|| plan_Ib.slots[day][slot].isBlank() ) {
+					std::cerr << " --- " << std::endl;
+					continue;
+			}
+			std::cerr << plan_Ib.slots[day][slot].teacher.id << " ";
+			std::cerr << plan_Ib.slots[day][slot].subject.id << " ";
+			std::cerr << plan_Ib.slots[day][slot].classroom.id << std::endl;
+		}
+	}
 
 	return 0;
 

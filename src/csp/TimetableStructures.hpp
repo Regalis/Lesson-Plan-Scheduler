@@ -61,6 +61,7 @@ namespace slimak {
 		int id;
 		int teacher_id;
 		std::vector< int > subjects;
+		std::vector< int > subjects_lessons;
 
 	};
 
