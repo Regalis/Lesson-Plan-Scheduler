@@ -1,0 +1,27 @@
+# Project related configuration options
+#--------------------------------------
+
+PROJECT_NAME = "Lesson Plan Scheduler"
+RECURSIVE = YES
+
+# Green color theme 
+#------------------
+HTML_COLORSTYLE_HUE = 100
+HTML_COLORSTYLE_SAT = 150
+HTML_COLORSTYLE_GAMMA = 125
+
+# Output
+#-------
+
+OUTPUT_DIRECTORY = ../doc
+DOXYFILE_ENCODING = UTF-8
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
+
+# UML Diagrams
+#-------------
+HAVE_DOT = YES
+UML_LOOK = YES
+CLASS_GRAPH = NO
+COLLABORATION_GRAPH = YES
+GENERATE_LEGEND = YES
