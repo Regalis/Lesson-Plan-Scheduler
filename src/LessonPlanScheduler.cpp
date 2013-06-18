@@ -33,9 +33,8 @@ void LessonPlanScheduler::exec() {
 	// TODO: detect first run and display wizard
 	// TODO: sql connection
 
-	// for now, let's display example form
-	classrooms_props = new ClassroomsProps();	
-	classrooms_props->show();
+	MainWindow *main_window = new MainWindow();
+	main_window->show();
 }
 
 LessonPlanScheduler::LessonPlanScheduler() {

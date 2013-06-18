@@ -20,29 +20,28 @@
  *
  */
 
-#ifndef __MAIN_WINDOW_HPP__
-#define __MAIN_WINDOW_HPP__
+#ifndef __SUBJECTS_HPP__
+#define __SUBJECTS_HPP__
 
-#include <QMainWindow>
+#include <QWidget>
 #include <QObject>
 
-class QStackedWidget;
-class QAction;
-class ClassroomsProps;
-class Subjects;
+class QComboBox;
+class QAbstractItemModel;
+class QTableView;
 
-class MainWindow : public QMainWindow {
+class Subjects : public QWidget {
 	Q_OBJECT;
 
 	public:
-		MainWindow();
+		Subjects(QWidget *parent = 0);
 	protected:
-		QStackedWidget *stack;
-		ClassroomsProps *classroomsprops;
-		Subjects *subjects;
+		QAbstractItemModel *subjects_model;
+		QTableView *subjects_table;
 		void initUI();
 	protected slots:
-		void selectView(QAction *action);
+		void addSubject();
+		void removeSubject();
 };
 
 #endif

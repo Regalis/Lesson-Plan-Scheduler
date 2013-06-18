@@ -30,10 +30,12 @@
 #include <QPushButton>
 #include <QStandardItemModel>
 #include <QGroupBox>
+#include <QInputDialog>
 
 #include "ClassroomsProps.hpp"
 
 ClassroomsProps::ClassroomsProps(QWidget *parent) : QWidget(parent) {
+	classrooms_id = 0;
 	initUI();
 }
 
@@ -57,11 +59,14 @@ void ClassroomsProps::initUI() {
 	new_classroom->setStatusTip(tr("Add new classroom"));
 	remove_classroom->setStatusTip(tr("Remove selected classroom"));
 
+	connect(new_classroom, SIGNAL(clicked()), this, SLOT(addClassroom()));
+	connect(remove_classroom, SIGNAL(clicked()), this, SLOT(removeClassroom()));
+
 	top_left_layout->addWidget(new_classroom);
 	top_left_layout->addWidget(remove_classroom);
 
 	classroom_table = new QTableView();
-	classroom_model = new QStandardItemModel();
+	classroom_model = new QStandardItemModel(1, 2, 0);
 	classroom_model->setHeaderData(0, Qt::Horizontal, tr("Name"));
 	classroom_model->setHeaderData(1, Qt::Horizontal, tr("Amount"));
 	classroom_table->setModel(classroom_model);
@@ -94,4 +99,19 @@ void ClassroomsProps::initUI() {
 	setLayout(layout);
 }
 
+void ClassroomsProps::addClassroom() {
+	bool ok = false;
+	while (1) {
+		QString class_name = QInputDialog::getText(this, tr("New classroom"), tr("Enter classroom name:"), QLineEdit::Normal, "", &ok); 
+		if (ok && !class_name.isEmpty()) {
+			classroom_select->addItem(class_name, QVariant(classrooms_id++));
+			break;
+		}
+	}
+}
 
+void ClassroomsProps::removeClassroom() {
+	if (classroom_select->count() != 0) {
+		classroom_select->removeItem(classroom_select->currentIndex());
+	}
+}

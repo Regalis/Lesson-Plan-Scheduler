@@ -20,8 +20,55 @@
  *
  */
 
+#include <QApplication>
+#include <QMenu>
+#include <QAction>
+#include <QActionGroup>
+#include <QMenuBar>
+#include <QStackedWidget>
+
 #include "MainWindow.hpp"
+#include "ClassroomsProps.hpp"
+#include "Subjects.hpp"
 
 MainWindow::MainWindow() : QMainWindow(0) {
-	// TODO: initialize main window		
+	// TODO: initialize main window
+	stack = new QStackedWidget(0);
+	classroomsprops = new ClassroomsProps(0);
+	subjects = new Subjects(0);
+	initUI();
+}
+
+void MainWindow::initUI() {
+	QAction *new_database = new QAction(tr("&New database"), this);
+	QAction *quit = new QAction(tr("&Quit"), this);
+	QMenu *file = menuBar()->addMenu(tr("&File"));
+	file->addAction(new_database);
+	file->addSeparator();
+	file->addAction(quit);
+	connect(quit, SIGNAL(triggered()), qApp, SLOT(quit()));
+
+	QMenu *view = menuBar()->addMenu(tr("&View"));
+	QActionGroup *view_group = new QActionGroup(0);
+	connect(view_group, SIGNAL(triggered(QAction*)), this, SLOT(selectView(QAction*)));
+
+	QAction *classrooms_action = view_group->addAction(tr("&Classrooms"));
+	classrooms_action->setData(0);
+	classrooms_action->setCheckable(true);
+	classrooms_action->setChecked(true);
+	QAction *subjects_action = view_group->addAction(tr("&Subjects"));
+	subjects_action->setData(1);
+	subjects_action->setCheckable(true);
+
+	view->addAction(classrooms_action);
+	view->addAction(subjects_action);
+
+	stack->addWidget(classroomsprops);
+	stack->addWidget(subjects);
+	
+	setCentralWidget(stack);
+}
+
+void MainWindow::selectView(QAction *action) {
+	stack->setCurrentIndex(action->data().toInt());
 }
