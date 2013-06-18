@@ -22,6 +22,8 @@
 #include "TimetableStructures.hpp"
 #include "Timetable.hpp"
 
+#undef slots
+
 Timetable::Timetable(QWidget *parent) : QWidget(parent) {
 	initUI();
 }
