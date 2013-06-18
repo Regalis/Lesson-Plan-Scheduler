@@ -25,6 +25,9 @@
 #include <QVBoxLayout>
 #include <QStandardItemModel>
 #include <QPushButton>
+#include <QHeaderView>
+#include <QAbstractItemView>
+#include <QItemSelectionModel>
 
 #include "Subjects.hpp"
 
@@ -47,8 +50,11 @@ void Subjects::initUI() {
 	buttons_box->addWidget(remove_subject);
 	buttons_box->addStretch();
 
-	subjects_model = new QStandardItemModel();
+	subjects_model = new QStandardItemModel(0, 3, 0);
 	subjects_table = new QTableView();
+	subjects_table->setSelectionBehavior(QAbstractItemView::SelectRows);
+	subjects_table->setSelectionMode(QAbstractItemView::SingleSelection);
+	subjects_table->horizontalHeader()->setStretchLastSection(true);
 
 	subjects_model->setHeaderData(0, Qt::Horizontal, tr("Name"));
 	subjects_model->setHeaderData(1, Qt::Horizontal, tr("Fatigue level"));
@@ -63,9 +69,12 @@ void Subjects::initUI() {
 }
 
 void Subjects::addSubject() {
-
+	subjects_model->insertRow(0);
 }
 
 void Subjects::removeSubject() {
-	
+	QItemSelectionModel *selection_model = subjects_table->selectionModel();	
+	if (selection_model->selectedRows().count() != 0) {
+		subjects_model->removeRow(selection_model->selectedRows().at(0).row());
+	}
 }
