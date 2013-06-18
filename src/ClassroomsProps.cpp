@@ -31,6 +31,7 @@
 #include <QStandardItemModel>
 #include <QGroupBox>
 #include <QInputDialog>
+#include <QHeaderView>
 
 #include "ClassroomsProps.hpp"
 
@@ -71,6 +72,7 @@ void ClassroomsProps::initUI() {
 	classroom_model->setHeaderData(1, Qt::Horizontal, tr("Amount"));
 	classroom_table->setModel(classroom_model);
 	classroom_table->resizeColumnsToContents();	
+	classroom_table->horizontalHeader()->setStretchLastSection(true);
 
 	left_layout->addLayout(top_left_layout);
 	left_layout->addWidget(classroom_table);
