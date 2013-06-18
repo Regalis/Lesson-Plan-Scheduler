@@ -1,11 +1,39 @@
-/* Test code */
+/*
+ *
+ * Copyright (C) Software Liberation Maniacs Cracow
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 #include <iostream>
 #include "TimetableGenerator.hpp"
+#include "TimetableStructures.hpp"
+#include "Timetable.hpp"
 
-int main() {
+Timetable::Timetable(QWidget *parent) : QWidget(parent) {
+	initUI();
+}
+
+void Timetable::initUI() {
+
+}
+
+void Timetable::generatePlan() {
 
 	/* Rooms */
+	
 	slimak::TimetableClassroom room001;
 	room001.id = 1;
 	room001.capacity = 20;
@@ -157,7 +185,5 @@ int main() {
 			std::cerr << plan_Ib.slots[day][slot].classroom.id << std::endl;
 		}
 	}
-
-	return 0;
 
 }
