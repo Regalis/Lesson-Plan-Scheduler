@@ -24,21 +24,28 @@
 #define __CLASSROOMS_PROPS_HPP__
 
 #include <QWidget>
+#include <QObject>
 
 class QComboBox;
 class QAbstractItemModel;
 class QTableView;
 
 class ClassroomsProps : public QWidget {
+	Q_OBJECT;
+
 	public:
 		ClassroomsProps(QWidget *parent = 0);
 	protected:
-		void initUI();
+		int classrooms_id;
 		QComboBox *classroom_select;
 		QAbstractItemModel *classroom_model;
 		QTableView *classroom_table;
 		QAbstractItemModel *props_model;
 		QTableView *props_table;
+		void initUI();
+	protected slots:
+		void addClassroom();
+		void removeClassroom();
 };
 
 #endif
