@@ -16,4 +16,5 @@ HEADERS += ./csp/CSP.hpp ./csp/CSPAttribute.hpp ./csp/CSPColor.hpp ./csp/CSPCons
 SOURCES += ./csp/CSP.cpp ./csp/CSPAttribute.cpp ./csp/CSPColor.cpp ./csp/TimetableAttribute.cpp ./csp/TimetableColor.cpp ./csp/TimetableConstraint.cpp ./csp/TimetableConstraints.cpp ./csp/TimetableGenerator.cpp
 ./csp/
 
+QMAKE_CXXFLAGS += -Wno-unused-parameter -Wno-sign-compare
 QT += widgets sql
