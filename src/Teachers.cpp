@@ -15,6 +15,7 @@
 #include "Teachers.hpp"
 
 Teachers::Teachers(QWidget *parent) : QWidget(parent) {
+	initUI();
 }
 
 void Teachers::initUI() {

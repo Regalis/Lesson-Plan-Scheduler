@@ -7,7 +7,7 @@ TARGET = lesson-plan-scheduler
 INCLUDEPATH += .
 
 # Input
-HEADERS += ClassroomsProps.hpp LessonPlanScheduler.hpp MainWindow.hpp Subjects.hpp Teachers.hpp
-SOURCES += ClassroomsProps.cpp LessonPlanScheduler.cpp main.cpp MainWindow.cpp Subjects.cpp Teachers.cpp
+HEADERS += ClassroomsProps.hpp LessonPlanScheduler.hpp MainWindow.hpp Subjects.hpp Teachers.hpp Groups.hpp
+SOURCES += ClassroomsProps.cpp LessonPlanScheduler.cpp main.cpp MainWindow.cpp Subjects.cpp Teachers.cpp Groups.cpp
 
 QT += widgets sql
