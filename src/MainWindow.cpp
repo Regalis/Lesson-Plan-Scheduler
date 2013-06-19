@@ -30,12 +30,16 @@
 #include "MainWindow.hpp"
 #include "ClassroomsProps.hpp"
 #include "Subjects.hpp"
+#include "Teachers.hpp"
+#include "Groups.hpp"
 
 MainWindow::MainWindow() : QMainWindow(0) {
 	// TODO: initialize main window
 	stack = new QStackedWidget(0);
 	classroomsprops = new ClassroomsProps(0);
 	subjects = new Subjects(0);
+	teachers = new Teachers(0);
+	groups = new Groups(0);
 	initUI();
 }
 
@@ -59,12 +63,22 @@ void MainWindow::initUI() {
 	QAction *subjects_action = view_group->addAction(tr("&Subjects"));
 	subjects_action->setData(1);
 	subjects_action->setCheckable(true);
+	QAction *teachers_action = view_group->addAction(tr("&Teachers"));
+	teachers_action->setCheckable(true);
+	teachers_action->setData(2);
+	QAction *groups_action = view_group->addAction(tr("&Groups"));
+	groups_action->setCheckable(true);
+	groups_action->setData(3);
 
 	view->addAction(classrooms_action);
 	view->addAction(subjects_action);
+	view->addAction(teachers_action);
+	view->addAction(groups_action);
 
 	stack->addWidget(classroomsprops);
 	stack->addWidget(subjects);
+	stack->addWidget(teachers);
+	stack->addWidget(groups);
 	
 	setCentralWidget(stack);
 }

@@ -38,6 +38,8 @@ class QStackedWidget;
 class QAction;
 class ClassroomsProps;
 class Subjects;
+class Teachers;
+class Groups;
 
 /** Main window class, contain all widgets
  *
@@ -53,6 +55,8 @@ class MainWindow : public QMainWindow {
 		QStackedWidget *stack;
 		ClassroomsProps *classroomsprops;
 		Subjects *subjects;
+		Teachers *teachers;
+		Groups *groups;
 
 		/** Initialize user interface
 		 *
