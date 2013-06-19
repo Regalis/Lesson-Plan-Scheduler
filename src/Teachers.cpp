@@ -1,3 +1,26 @@
+/*
+ *
+ * Copyright (C) Software Liberation Maniacs Cracow
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contributors:
+ *  -> Ariana Las <ariana.las@gmail.com>
+ *
+ */
+
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QComboBox>
@@ -10,6 +33,7 @@
 #include <QGroupBox>
 #include <QItemSelectionModel>
 #include <QModelIndex>
+#include <QHeaderView>
 //#include <QList>
 
 #include "Teachers.hpp"
@@ -55,6 +79,7 @@ void Teachers::initUI() {
 	teachers_model->setHeaderData(2, Qt::Horizontal, tr("Max amount of slots"));
 	teachers_table->setModel(teachers_model);
 	teachers_table->resizeColumnsToContents();	
+	teachers_table->horizontalHeader()->setStretchLastSection(true);
 
 	teachers_table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	teachers_table->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -86,6 +111,7 @@ void Teachers::initUI() {
 
 	slots_table->setModel(slots_model);
 	slots_table->resizeColumnsToContents();	
+	slots_table->horizontalHeader()->setStretchLastSection(true);
 
 
 	slots_layout->addWidget(slots_table);
@@ -104,6 +130,7 @@ void Teachers::initUI() {
 	subjects_model->setHeaderData(0, Qt::Horizontal, tr("Subject name"));
 	subjects_table->setModel(subjects_model);
 	subjects_table->resizeColumnsToContents();	
+	subjects_table->horizontalHeader()->setStretchLastSection(true);
 
 	subjects_table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	subjects_table->setSelectionMode(QAbstractItemView::SingleSelection);
