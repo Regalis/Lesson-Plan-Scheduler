@@ -20,22 +20,40 @@
  *
  */
 
+/**
+ * @file LessonPlanScheduler.hpp
+ * @brief Main program class
+ * @date 2013-05-21
+ * @authors Patryk Jaworski <regalis@regalis.com.pl>
+ * @copyright GNU General Public License v3.
+ */
+
 #ifndef __LESSON_PLAN_SCHEDULER_HPP__
 #define __LESSON_PLAN_SCHEDULER_HPP__
 
 class MainWindow;
 class ClassroomsProps;
 
+/** Main program class
+ *
+ * Signleton class, contain configuration, database instances.
+ */
 class LessonPlanScheduler {
 	public:
+		/** Get class instance */
 		static LessonPlanScheduler *get();
+
+		/** Execute program
+		 * Function will initialize db connections, read/write configuration
+		 * file and decide which widget to display (Wizard or MainWindow)
+		 */
 		void exec();
 	protected:
+		MainWindow *main_window;
+		ClassroomsProps *classrooms_props;
 		LessonPlanScheduler();
 		LessonPlanScheduler(const LessonPlanScheduler&);
 		LessonPlanScheduler operator=(const LessonPlanScheduler&);
-		MainWindow *main_window;
-		ClassroomsProps *classrooms_props;
 };
 
 #endif

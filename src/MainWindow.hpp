@@ -20,6 +20,14 @@
  *
  */
 
+/**
+ * @file MainWindow.hpp
+ * @brief Main user window
+ * @date 2013-05-21
+ * @authors Patryk Jaworski <regalis@regalis.com.pl>
+ * @copyright GNU General Public License v3.
+ */
+
 #ifndef __MAIN_WINDOW_HPP__
 #define __MAIN_WINDOW_HPP__
 
@@ -31,6 +39,11 @@ class QAction;
 class ClassroomsProps;
 class Subjects;
 
+/** Main window class, contain all widgets
+ *
+ * Window with menu, toolbar and main widget. Main widget is
+ * selected by user via. "View" menu.
+ */
 class MainWindow : public QMainWindow {
 	Q_OBJECT;
 
@@ -40,8 +53,19 @@ class MainWindow : public QMainWindow {
 		QStackedWidget *stack;
 		ClassroomsProps *classroomsprops;
 		Subjects *subjects;
+
+		/** Initialize user interface
+		 *
+		 * Build menu, toolbars and main widgets
+		 */
 		void initUI();
 	protected slots:
+		/** Update main widget
+		 *
+		 * Display selected main widget
+		 *
+		 * @param action menu action (must contain widget id)
+		 */
 		void selectView(QAction *action);
 };
 

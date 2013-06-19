@@ -15,48 +15,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
- * Contributors:
- *  -> Patryk Jaworski <regalis@regalis.com.pl>
- *
  */
 
-/**
- * @file Subjects.hpp
- * @brief Subjects edit form
- * @date 2013-06-18
- * @authors Patryk Jaworski <regalis@regalis.com.pl>
- * @copyright GNU General Public License v3.
- */
-
-#ifndef __SUBJECTS_HPP__
-#define __SUBJECTS_HPP__
+#ifndef __TIMETABLE_HPP__
+#define __TIMETABLE_HPP__
 
 #include <QWidget>
-#include <QObject>
 
 class QComboBox;
 class QAbstractItemModel;
 class QTableView;
 
-
-/** Subjects widget */
-class Subjects : public QWidget {
-	Q_OBJECT;
+class Timetable : public QWidget {
 
 	public:
-		Subjects(QWidget *parent = 0);
+		Timetable(QWidget *parent = 0);
 	protected:
-		QAbstractItemModel *subjects_model;
-		QTableView *subjects_table;
-
-		/** Initialize user interface
-		 *
-		 * Build tables, models and layouts
-		 */
 		void initUI();
-	protected slots:
-		void addSubject();
-		void removeSubject();
+		void generatePlan();
+
 };
 
 #endif
