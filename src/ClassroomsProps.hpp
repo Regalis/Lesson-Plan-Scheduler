@@ -20,6 +20,14 @@
  *
  */
 
+/**
+ * @file ClassroomsProps.hpp
+ * @brief Classrooms and props widget
+ * @date 2013-05-21
+ * @authors Patryk Jaworski <regalis@regalis.com.pl>
+ * @copyright GNU General Public License v3.
+ */
+
 #ifndef __CLASSROOMS_PROPS_HPP__
 #define __CLASSROOMS_PROPS_HPP__
 
@@ -30,6 +38,7 @@ class QComboBox;
 class QAbstractItemModel;
 class QTableView;
 
+/** Classrooms and Props widget */
 class ClassroomsProps : public QWidget {
 	Q_OBJECT;
 
@@ -42,9 +51,21 @@ class ClassroomsProps : public QWidget {
 		QTableView *classroom_table;
 		QAbstractItemModel *props_model;
 		QTableView *props_table;
+
+		/** Initialize user interface
+		 *
+		 * Build group boxes, tables, layouts and models
+		 */
 		void initUI();
 	protected slots:
+		
+		/** Add new clasroom to combo box
+		 *
+		 * Display input dialog and add classroom
+		 */
 		void addClassroom();
+
+		/** Remove selected classroom from combo box */
 		void removeClassroom();
 };
 

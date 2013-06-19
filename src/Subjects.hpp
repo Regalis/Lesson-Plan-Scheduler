@@ -20,6 +20,14 @@
  *
  */
 
+/**
+ * @file Subjects.hpp
+ * @brief Subjects edit form
+ * @date 2013-06-18
+ * @authors Patryk Jaworski <regalis@regalis.com.pl>
+ * @copyright GNU General Public License v3.
+ */
+
 #ifndef __SUBJECTS_HPP__
 #define __SUBJECTS_HPP__
 
@@ -30,6 +38,8 @@ class QComboBox;
 class QAbstractItemModel;
 class QTableView;
 
+
+/** Subjects widget */
 class Subjects : public QWidget {
 	Q_OBJECT;
 
@@ -38,6 +48,11 @@ class Subjects : public QWidget {
 	protected:
 		QAbstractItemModel *subjects_model;
 		QTableView *subjects_table;
+
+		/** Initialize user interface
+		 *
+		 * Build tables, models and layouts
+		 */
 		void initUI();
 	protected slots:
 		void addSubject();
